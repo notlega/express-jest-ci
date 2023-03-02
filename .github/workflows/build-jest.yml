@@ -31,6 +31,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout source tree
+        uses: actions/checkout@v2.5.0
+
       - name: Run tests
         run: npm run test
 
@@ -38,5 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, test]
     steps:
+      - name: Checkout source tree
+        uses: actions/checkout@v2.5.0
+
       - name: Compare test coverage
         run: ArtiomTr/jest-coverage-report-action@v2
