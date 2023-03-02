@@ -1,0 +1,16 @@
+name: Run tests with Jest
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source tree
+        uses: actions/checkout@v2.5.0
+
+      - name: Compare test coverage
+        uses: ArtiomTr/jest-coverage-report-action@v2
