@@ -5,11 +5,8 @@ on:
   pull_request:
     branches: [main, develop]
 
-env:
-  PNPM_VERSION: 7.14.0
-
 jobs:
-  build:
+  build-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source tree
@@ -27,22 +24,8 @@ jobs:
       - name: Build
         run: npm run build
 
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout source tree
-        uses: actions/checkout@v2.5.0
-
       - name: Run tests
         run: npm run test
-
-  compare-test-coverage:
-    runs-on: ubuntu-latest
-    needs: [build, test]
-    steps:
-      - name: Checkout source tree
-        uses: actions/checkout@v2.5.0
 
       - name: Compare test coverage
         run: ArtiomTr/jest-coverage-report-action@v2
